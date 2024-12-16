@@ -27,7 +27,7 @@ import Layout from "../layouts/main.astro";
 
         <Button
           text="Download CV"
-          link="/cv.pdf"
+          link={personalInfo.cv}
           outline
           download={`cv-${personalInfo.firstName}.pdf`}
         />

@@ -4,6 +4,7 @@
     "lastName": "Montaño",
     "about": "Soy un desarrollador de software especializado en javascript y react.",
     "avatar": "/assets/images/photo.png",
+    "cv": "/assets/cv/cv.pdf",
     "birthDate": "1999-08-29",
     "email": "brayanmbeltre@gmail.com",
     "github": "https://github.com/brayanMBeltre"
