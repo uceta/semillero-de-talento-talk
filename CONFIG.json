@@ -1,0 +1,38 @@
+{
+  "personalInfo": {
+    "firstName": "John",
+    "lastName": "Doe",
+    "summary": "I’m a software developer from the Dominican Republic, focused on Front-end & Web Development.",
+    "about": "I’m a software developer from the Dominican Republic, focused on Front-end & Web Development. I love bringing designs alive and creating systems that allow users to digest the information and guide them in an immersive experience.",
+    "birthDate": "1995-01-01",
+    "email": "brayanmbeltre@gmail.com",
+    "github": "https://github.com/BrayanMBeltre"
+  },
+  "skills": [
+    "JS",
+    "React",
+    "Node",
+    "HTML",
+    "CSS",
+    "SASS",
+    "Bootstrap",
+    "Material-UI",
+    "Git",
+    "Jest",
+    "Enzyme",
+    "Webpack",
+    "Babel",
+    "ES6",
+    "RESTful APIs",
+    "GraphQL",
+    "MongoDB",
+    "SQL",
+    "Firebase",
+    "Heroku",
+    "Netlify",
+    "Vercel",
+    "Figma",
+    "Photoshop",
+    "Illustrator"
+  ]
+}
