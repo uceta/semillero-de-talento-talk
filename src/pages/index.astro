@@ -1,15 +1,16 @@
 ---
+import { personalInfo, skills } from "../../CONFIG.json";
+import { experiences } from "../../CONFIG.json";
+import AboutExperience from "../components/about-experience.astro";
 import Button from "../components/button.astro";
 import Projects from "../components/home/projects.astro";
 import Separator from "../components/home/separator.astro";
-import Writings from "../components/home/writings.astro";
 import Layout from "../layouts/main.astro";
-import { personalInfo } from "../../CONFIG.json";
 ---
 
 <Layout title={personalInfo.firstName}>
   <div
-    class="relative z-20 w-full max-w-4xl mx-auto mt-16 px-7 md:mt-24 lg:mt-32 xl:px-0"
+    class="relative z-20 w-full max-w-4xl mx-auto mt-16 px-7 md:mt-24 lg:mt-24 xl:px-0"
   >
     <div class="flex flex-col items-center md:flex-row">
       <div class="relative w-full md:w-1/2">
@@ -19,13 +20,16 @@ import { personalInfo } from "../../CONFIG.json";
           Hello, I'm {personalInfo.firstName}.
         </h1>
         <p class="mb-6 text-base text-neutral-600 dark:text-neutral-400">
-          {personalInfo.summary}
+          {personalInfo.about}
         </p>
 
+        <Button text="Contact Me" link={`mailto:${personalInfo.email}`} />
+
         <Button
-          text="Download CV 𝕏"
-          link="/robots.txt"
-          download={`${personalInfo.firstName.toLowerCase()}-cv.pdf`}
+          text="Download CV"
+          link="/cv.pdf"
+          outline
+          download={`cv-${personalInfo.firstName}.pdf`}
         />
       </div>
       <div
@@ -46,7 +50,7 @@ import { personalInfo } from "../../CONFIG.json";
           </div>
           <div class="relative z-30 px-10">
             <img
-              src="/assets/images/photo.png"
+              src={personalInfo.avatar}
               loading="eager"
               decoding="auto"
               class="relative z-30 w-[400px] h-full mx-auto dark:-translate-y-0.5"
@@ -61,8 +65,78 @@ import { personalInfo } from "../../CONFIG.json";
     </div>
   </div>
 
+  <Separator text="Some of my skills" />
+  <section class="max-w-4xl mx-auto px-7 lg:px-0">
+    <h2
+      class="mt-5 mb-2 text-2xl font-bold lg:mt-10 sm:mt-6 dark:text-neutral-200"
+    >
+      My Skills
+    </h2>
+
+    <div class="grid grid-cols-4 gap-8">
+      {
+        skills.map(async (skill) => {
+          const initial = skill.charAt(0).toUpperCase();
+
+          let error = false;
+          let img = null;
+
+          try {
+            img = await fetch(
+              `https://cdn.simpleicons.org/${skill.toLowerCase().trim()}`
+            );
+
+            if (!img.ok) error = true;
+          } catch (error) {
+            error = true;
+          }
+
+          return (
+            <div class="flex flex-col items-center justify-center text-center">
+              <div class="h-16 w-16 border border-gray-200 rounded-full dark:border-neutral-700 flex items-center justify-center">
+                {error ? (
+                  <div class="font-bold uppercase text-xl">{initial}</div>
+                ) : (
+                  <img src={img.url} alt={skill} class="w-8 h-8 rounded-full" />
+                )}
+              </div>
+
+              <p class="mb-1 text-sm font-medium dark:text-neutral-300">
+                {skill}
+              </p>
+            </div>
+          );
+        })
+      }
+    </div>
+  </section>
+
+  <Separator text="Some of my experiences" />
+  <section class="max-w-4xl mx-auto px-7 lg:px-0">
+    <h2
+      class="mt-5 mb-2 text-2xl font-bold lg:mt-10 sm:mt-6 dark:text-neutral-200"
+    >
+      Experience
+    </h2>
+    <div class="px-5 py-10">
+      {
+        experiences.map((experience) => {
+          return (
+            <div class="pb-10 border-l border-gray-200 last:border-l-0 dark:border-neutral-700">
+              <AboutExperience
+                dates={experience.dates}
+                role={experience.role}
+                company={experience.company}
+                description={experience.description}
+                logo={experience.logo}
+              />
+            </div>
+          );
+        })
+      }
+    </div>
+  </section>
+
   <Separator text="Check out my projects" />
   <Projects />
-  <Separator text="Some of my writing" />
-  <Writings />
 </Layout>
