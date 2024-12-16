@@ -3,6 +3,8 @@
     "firstName": "Lewis",
     "lastName": "Uceta",
     "about": "Estudio ingeniería en software, me apasiona el basket, y en mi carrera profesional quiero aprender a hacer proyectos sólidos que me generen muchas ganancias.",
+    "avatar": "/photo.png",
+    "cv": "cv.pdf",    
     "birthDate": "21/06/03",
     "email": "ucetagenao21@gmail.com",
     "github": "https://github.com/uceta"
